@@ -88,26 +88,6 @@ Created as a portfolio project to demonstrate networking fundamentals for Sabanc
    - Click "Calculate Subnet"
    - View detailed results
 
-### Option 2: Deploy to GitHub Pages (For Portfolio)
-
-1. **Create a GitHub repository**:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: Subnet Calculator"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/subnet-calculator.git
-   git push -u origin main
-   ```
-
-2. **Enable GitHub Pages**:
-   - Go to repository Settings
-   - Navigate to Pages section
-   - Select main branch as source
-   - Your site will be live at: `https://YOUR-USERNAME.github.io/subnet-calculator/`
-
-3. **Share the link** in your Sabanci application!
-
 ## 📊 Example Calculations
 
 ### Example 1: Class C Private Network
@@ -209,7 +189,7 @@ This project is open source and available for educational purposes.
 
 Created by [M. Hassaan Majid Toor]
 - **Certification**: Cisco NetAcad Network Basics
-- **GitHub**: [Your GitHub Profile]
-- **Email**: [Your Email]
+- **GitHub**: [ScrambleR-H]
+- **Email**: [scrambler1901@gmail.com]
 
 
