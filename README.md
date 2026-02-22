@@ -14,7 +14,7 @@ This interactive subnet calculator performs IPv4 subnetting calculations and dis
 
 ## 🎯 Purpose
 
-Created as a portfolio project to demonstrate networking fundamentals for Sabanci University BSCS scholarship application. This project proves practical application of:
+This project proves practical application of:
 - TCP/IP addressing concepts
 - Subnet mask calculations
 - Network planning and design
