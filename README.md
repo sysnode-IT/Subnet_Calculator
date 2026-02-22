@@ -172,7 +172,7 @@ Potential improvements to demonstrate advanced knowledge:
 - [ ] Comparison of different subnetting schemes
 - [ ] Network design recommendations based on host requirements
 
-## 🎯 Why This Project for Sabanci University
+## 🎯 Why This Project 
 
 This project demonstrates:
 - **Practical Application**: Not just theory, but working implementation
