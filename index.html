@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnet Calculator Pro | Advanced Network Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="theme-toggle">
+        <input type="checkbox" id="theme-switch" />
+        <label for="theme-switch" class="theme-label">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+        </label>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="glass-header">
+            <div class="header-content">
+                <div class="icon-wrapper">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h1 class="gradient-text">Subnet Calculator</h1>
+                <p class="subtitle">Professional IPv4 Network Analysis Tool</p>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number" id="calc-count">0</span>
+                        <span class="stat-label">Calculations</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">Cisco</span>
+                        <span class="stat-label">NetAcad Certified</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Calculator Section -->
+        <section class="calculator-section glass-card">
+            <div class="section-header">
+                <h2>🔢 Input Parameters</h2>
+            </div>
+
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="ipAddress">
+                        <span class="label-icon">📍</span>
+                        IP Address
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="ipAddress" placeholder="192.168.1.0" value="192.168.1.0">
+                        <span class="input-icon">🌐</span>
+                    </div>
+                    <span class="helper-text">Enter IPv4 address (e.g., 192.168.1.0)</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="subnetMask">
+                        <span class="label-icon">🎯</span>
+                        CIDR Notation
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="range" id="cidrSlider" min="0" max="32" value="24" oninput="updateCIDR(this.value)">
+                        <input type="number" id="subnetMask" min="0" max="32" placeholder="24" value="24" oninput="updateSlider(this.value)">
+                        <span class="cidr-display">/<span id="cidrValue">24</span></span>
+                    </div>
+                    <span class="helper-text">Slide or type CIDR value (0-32)</span>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateSubnet()">
+                    <span class="btn-text">Calculate Network</span>
+                    <span class="btn-icon">⚡</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <div id="results" class="results-section" style="display: none;">
+            <div class="section-header">
+                <h2>📊 Network Analysis Results</h2>
+            </div>
+            
+            <div class="result-grid">
+                <!-- Network Details Card -->
+                <div class="result-card glass-card">
+                    <div class="card-header">
+                        <span class="card-icon">🌐</span>
+                        <h3>Network Details</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="result-item">
+                            <span class="label">IP Address</span>
+                            <span class="value" id="ipAddr"></span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="label">Network Address</span>
+                            <span class="value" id="networkAddr"></span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="label">Broadcast Address</span>
+                            <span class="value" id="broadcastAddr"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Subnet Mask</span>
+                            <span class="value" id="subnetMaskDecimal"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Wildcard Mask</span>
+                            <span class="value" id="wildcardMask"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Host Information Card -->
+                <div class="result-card glass-card">
+                    <div class="card-header">
+                        <span class="card-icon">👥</span>
+                        <h3>Host Information</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="result-item highlight">
+                            <span class="label">First Usable Host</span>
+                            <span class="value" id="firstHost"></span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="label">Last Usable Host</span>
+                            <span class="value" id="lastHost"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Total Addresses</span>
+                            <span class="value badge" id="totalHosts"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Usable Hosts</span>
+                            <span class="value badge success" id="usableHosts"></span>
+                        </div>
+                        <div class="host-bar">
+                            <div class="host-bar-fill" id="hostBarFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Binary Representation Card -->
+                <div class="result-card glass-card">
+                    <div class="card-header">
+                        <span class="card-icon">💻</span>
+                        <h3>Binary Representation</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="result-item binary">
+                            <span class="label">IP (Binary)</span>
+                            <div class="binary-value" id="ipBinary"></div>
+                        </div>
+                        <div class="result-item binary">
+                            <span class="label">Mask (Binary)</span>
+                            <div class="binary-value" id="maskBinary"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Classification Card -->
+                <div class="result-card glass-card">
+                    <div class="card-header">
+                        <span class="card-icon">🏷️</span>
+                        <h3>Classification</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="result-item">
+                            <span class="label">IP Class</span>
+                            <span class="value badge" id="ipClass"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Network Type</span>
+                            <span class="value badge" id="networkType"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">CIDR Notation</span>
+                            <span class="value code" id="cidrNotation"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="glass-footer">
+            <div class="footer-content">
+                <p class="footer-main">
+                    <strong>Portfolio Project</strong> by [Your Name] | 
+                    <span class="badge-small">Cisco NetAcad Certified</span>
+                </p>
+                <p class="footer-sub">
+                    Understanding subnetting is fundamental for network design and IP address management
+                </p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">GitHub</a>
+                    <span class="divider">•</span>
+                    <a href="#" class="footer-link">LinkedIn</a>
+                    <span class="divider">•</span>
+                    <a href="#" class="footer-link">Documentation</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
