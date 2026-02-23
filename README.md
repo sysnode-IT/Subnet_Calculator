@@ -1,195 +1,212 @@
-# 🌐 Advanced Subnet Calculator
+# SubnetPro — IPv4 & IPv6 Subnet Calculator
 
-A professional web-based subnet calculator that demonstrates practical networking knowledge from Cisco NetAcad Network Basics certification.
+A professional, fully-featured subnet calculator with a warm **brown & beige** design theme. Supports both IPv4 (32-bit) and IPv6 (128-bit) address families in a clean, responsive interface built with pure HTML, CSS, and JavaScript — no frameworks, no dependencies.
 
-## 📋 Project Overview
+---
 
-This interactive subnet calculator performs IPv4 subnetting calculations and displays comprehensive network information. It's designed to showcase understanding of:
-- IP addressing and subnetting
-- CIDR notation
-- Network/broadcast address calculation
-- Binary-to-decimal conversion
-- IP address classes
-- Public vs Private IP ranges
+## Features
 
-## 🎯 Purpose
+### Design & Interface
+- **Brown & Beige Color Theme** — warm, rich tones with `Playfair Display` serif headings and `Source Code Pro` monospace output
+- **Fully Responsive** — works perfectly on desktop, tablet, and mobile
+- **Smooth Animations** — card reveals, slide-in transitions, and hover effects
+- **Click-to-Copy** — click any result value to instantly copy it to your clipboard
+- **Copy Toast Notification** — subtle feedback confirmation when a value is copied
+- **Calculation Counter** — tracks how many calculations you have run, saved via localStorage
 
-This project proves practical application of:
-- TCP/IP addressing concepts
-- Subnet mask calculations
-- Network planning and design
-- Binary mathematics in networking
+### IPv4 Calculator
+- Enter any valid IPv4 address with CIDR notation (0–32)
+- Interactive slider + number input, both stay in sync
+- **Results include:**
+  - Network address
+  - Broadcast address
+  - Subnet mask (dotted decimal)
+  - Wildcard mask
+  - First and last usable host addresses
+  - Total address count and usable host count
+  - Host utilization progress bar
+  - Full binary representation of IP and mask
+  - IP class (A / B / C / D / E)
+  - Network type (Private, Public, Loopback, Link-Local, etc.)
+  - CIDR notation and host bit count
 
-## ✨ Features
+### IPv6 Calculator
+- Accepts full or compressed IPv6 addresses (e.g. `2001:db8::1`)
+- Prefix length slider from 0 to 128
+- **Results include:**
+  - Expanded (full 128-bit) address
+  - Network prefix
+  - Prefix mask
+  - First and last addresses in the subnet
+  - Total address count (human-readable for large values)
+  - Binary representation (first 64 bits and last 64 bits)
+  - Address type classification (Global Unicast, Link-Local, Multicast, Loopback, etc.)
+  - Scope (Global, Link, Site, Interface, etc.)
+  - CIDR notation and host bit count
 
-### Core Functionality
-- **Subnet Calculations**: Automatically calculates network address, broadcast address, and host ranges
-- **CIDR Support**: Works with CIDR notation (/0 to /32)
-- **Host Information**: Shows total hosts, usable hosts, first and last usable IPs
-- **Binary Conversion**: Displays IP addresses and subnet masks in binary format
-- **IP Classification**: Identifies IP class (A, B, C, D, E) and network type (Public/Private)
-- **Wildcard Mask**: Calculates wildcard masks (useful for ACLs)
+---
 
-### Technical Features
-- **Real-time Validation**: Checks IP address format and CIDR range
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Professional UI**: Clean, modern interface with smooth animations
-- **Error Handling**: Clear error messages for invalid inputs
+## Getting Started
 
-## 🛠️ Technologies Used
+### Run Locally
+1. Download or clone all four files into the same folder:
+   ```
+   index.html
+   styles.css
+   script.js
+   README.md
+   ```
+2. Open `index.html` in any modern browser
+3. No build step, no server, no dependencies needed
 
-- **HTML5**: Semantic markup and structure
-- **CSS3**: Modern styling with gradients, animations, and flexbox/grid
-- **JavaScript (Vanilla)**: Core calculation logic without external dependencies
-- **No frameworks required**: Pure web technologies for maximum compatibility
+### Deploy to GitHub Pages
+1. Create a new GitHub repository (e.g. `subnet-calculator`)
+2. Upload all three files (`index.html`, `styles.css`, `script.js`)
+3. Go to **Settings → Pages**
+4. Set source to `main` branch, root folder
+5. Your site will be live at `https://your-username.github.io/subnet-calculator/`
 
-## 📚 Networking Concepts Demonstrated
+---
 
-### 1. IP Addressing
-- Understanding IPv4 32-bit addressing
-- Octet structure (xxx.xxx.xxx.xxx)
-- Address classes (A, B, C, D, E)
-- Public vs Private IP ranges
+## How to Use
 
-### 2. Subnetting
-- CIDR notation (Classless Inter-Domain Routing)
-- Subnet mask calculation
-- Network and broadcast address determination
-- Usable host range calculation
+### IPv4
+1. Click the **IPv4** tab (active by default)
+2. Type an IPv4 address into the IP field (e.g. `192.168.1.0`)
+3. Drag the CIDR slider or type a prefix length (0–32)
+4. Click **Calculate Network** or press Enter
+5. Results appear in four cards below
 
-### 3. Binary Mathematics
-- Decimal to binary conversion
-- Binary AND operations (for network address)
-- Binary OR operations (for broadcast address)
-- Understanding bit-level operations
+### IPv6
+1. Click the **IPv6** tab
+2. Type a valid IPv6 address (e.g. `2001:db8::` or `fe80::1`)
+3. Set the prefix length using the slider or number field (0–128)
+4. Click **Calculate Network** or press Enter
+5. Results appear in four cards below
 
-### 4. Network Planning
-- Host requirement calculations
-- Efficient IP address allocation
-- Understanding network boundaries
-- Wildcard mask usage in ACLs
+**Tip:** Click on any result value to copy it to your clipboard.
 
-## 🚀 How to Use
+---
 
-### Option 1: Run Locally (Recommended for Testing)
+## Example Inputs
 
-1. **Download the files**:
-   - `index.html`
-   - `styles.css`
-   - `script.js`
+### IPv4 Examples
+| Address | CIDR | Description |
+|---------|------|-------------|
+| `192.168.1.0` | `/24` | Standard home/office network — 254 usable hosts |
+| `10.0.0.0` | `/8` | Large private Class A — 16+ million hosts |
+| `172.16.0.0` | `/12` | RFC 1918 private Class B range |
+| `192.168.10.0` | `/26` | Small subnet — 62 usable hosts |
+| `10.10.0.0` | `/30` | Point-to-point link — 2 usable hosts |
 
-2. **Open in browser**:
-   - Double-click `index.html`
-   - Or open with any modern web browser
+### IPv6 Examples
+| Address | Prefix | Description |
+|---------|--------|-------------|
+| `2001:db8::` | `/32` | Documentation address (RFC 3849) |
+| `fe80::1` | `/64` | Link-local address |
+| `2001:db8:abcd::` | `/48` | Typical ISP allocation |
+| `::1` | `/128` | Loopback address |
+| `ff02::1` | `/128` | All-nodes multicast |
 
-3. **Use the calculator**:
-   - Enter an IP address (e.g., 192.168.1.0)
-   - Enter CIDR notation (e.g., 24 for /24)
-   - Click "Calculate Subnet"
-   - View detailed results
+---
 
-## 📊 Example Calculations
+## File Structure
 
-### Example 1: Class C Private Network
-**Input**: 192.168.1.0/24
-**Output**:
-- Network Address: 192.168.1.0
-- Broadcast Address: 192.168.1.255
-- First Host: 192.168.1.1
-- Last Host: 192.168.1.254
-- Usable Hosts: 254
-- IP Class: C
-- Network Type: Private (Class C)
+```
+subnet-calculator/
+├── index.html    ← Full page structure, both IPv4 and IPv6 panels
+├── styles.css    ← Brown & beige theme, layout, responsive styles
+├── script.js     ← All calculation logic for IPv4 and IPv6
+└── README.md     ← This file
+```
 
-### Example 2: Subnetted Class B
-**Input**: 172.16.0.0/20
-**Output**:
-- Network Address: 172.16.0.0
-- Broadcast Address: 172.16.15.255
-- First Host: 172.16.0.1
-- Last Host: 172.16.15.254
-- Usable Hosts: 4,094
-- IP Class: B
-- Network Type: Private (Class B)
+---
 
-### Example 3: Large Class A Network
-**Input**: 10.0.0.0/8
-**Output**:
-- Network Address: 10.0.0.0
-- Broadcast Address: 10.255.255.255
-- First Host: 10.0.0.1
-- Last Host: 10.255.255.254
-- Usable Hosts: 16,777,214
-- IP Class: A
-- Network Type: Private (Class A)
+## Technology Stack
 
-## 🎓 Learning Outcomes
+- **HTML5** — semantic markup, accessible form elements
+- **CSS3** — custom properties, CSS Grid, Flexbox, keyframe animations
+- **JavaScript (ES6+)** — pure vanilla JS, no libraries or frameworks
+- **Google Fonts** — Playfair Display, Source Code Pro, Lato
+- **localStorage** — persists calculation counter across sessions
+- **Clipboard API** — click-to-copy on all result values
 
-By building this project, I demonstrated understanding of:
+---
 
-1. **Practical Subnetting**: Converting theoretical knowledge into working code
-2. **Algorithm Development**: Implementing subnet calculation algorithms
-3. **Binary Operations**: Using bitwise operations for network calculations
-4. **Problem Solving**: Breaking down complex networking problems into logical steps
-5. **Web Development**: Creating professional, user-friendly interfaces
-6. **Documentation**: Writing clear technical documentation
+## Customization
 
-## 🔍 Code Highlights
-
-### Subnet Mask Conversion (CIDR to Decimal)
-```javascript
-function cidrToMask(cidr) {
-    const mask = [];
-    for (let i = 0; i < 4; i++) {
-        const n = Math.min(cidr, 8);
-        mask.push(256 - Math.pow(2, 8 - n));
-        cidr -= n;
-    }
-    return mask.join('.');
+### Change Accent Color
+Open `styles.css` and edit the root variables:
+```css
+:root {
+  --brown-700: #5c3317;  /* button background */
+  --brown-600: #7a4520;  /* hover state */
+  --amber:     #c97d2a;  /* progress bar */
 }
 ```
 
-### Network Address Calculation
-```javascript
-const networkParts = ipParts.map((octet, i) => octet & maskParts[i]);
+### Update Your Links
+In `index.html`, find the footer and replace the placeholder links:
+```html
+<a href="https://github.com/your-username" class="flink">GitHub</a>
+<a href="https://linkedin.com/in/your-profile" class="flink">LinkedIn</a>
 ```
-*Uses bitwise AND operation - fundamental networking concept*
 
-### Broadcast Address Calculation
-```javascript
-const broadcastParts = networkParts.map((octet, i) => octet | wildcardParts[i]);
+### Add Your Name
+In the footer section:
+```html
+<span class="footer-name">Your Name — SubnetPro</span>
 ```
-*Uses bitwise OR operation with wildcard mask*
 
-## 📈 Future Enhancements
+---
 
-Potential improvements to demonstrate advanced knowledge:
-- [ ] VLSM (Variable Length Subnet Masking) calculator
-- [ ] IPv6 support
-- [ ] Subnet visualization diagrams
-- [ ] Export results as PDF/CSV
-- [ ] History of calculations
-- [ ] Comparison of different subnetting schemes
-- [ ] Network design recommendations based on host requirements
+## Browser Support
 
-## 🎯 Why This Project 
+| Browser | Support |
+|---------|---------|
+| Chrome / Edge (latest) | ✅ Full |
+| Firefox (latest) | ✅ Full |
+| Safari (latest) | ✅ Full |
+| iOS Safari | ✅ Full |
+| Chrome Mobile | ✅ Full |
 
-This project demonstrates:
-- **Practical Application**: Not just theory, but working implementation
-- **Technical Skills**: HTML, CSS, JavaScript, and networking fundamentals
-- **Problem Solving**: Breaking down complex problems into code
-- **Professional Quality**: Production-ready code with proper documentation
-- **Self-Learning**: Ability to apply certification knowledge to real projects
+The Clipboard API (used for click-to-copy) requires either a secure context (HTTPS) or localhost. Everything else works on plain HTTP as well.
 
-## 📝 License
+---
 
-This project is open source and available for educational purposes.
+## Troubleshooting
 
-## 👤 Author
+**Copy not working?**
+The Clipboard API needs HTTPS or localhost. If you open the file directly via `file://`, copy may not work in some browsers. Serve it locally with a simple HTTP server or deploy to GitHub Pages.
 
-Created by [M. Hassaan Majid Toor]
-- **Certification**: Cisco NetAcad Network Basics
-- **GitHub**: [ScrambleR-H]
-- **Email**: [scrambler1901@gmail.com]
+**Slider and number input out of sync?**
+Both inputs call `syncV4()` or `syncV6()` on every change, so they should always stay in sync. If you notice a discrepancy, refresh the page.
 
+**IPv6 address not recognized?**
+Make sure you are using valid colon-hex notation. Compressed forms like `::1`, `fe80::`, and `2001:db8::abcd` are all supported. Mixed IPv4/IPv6 notation (e.g. `::ffff:192.168.1.1`) is recognized as IPv4-Mapped.
 
+---
+
+## Planned Additions
+
+- [ ] VLSM (Variable Length Subnet Masking) tool
+- [ ] Subnet split / divide calculator
+- [ ] Calculation history panel
+- [ ] Export results to PDF or CSV
+- [ ] IPv6 address type reference guide
+- [ ] Offline support via Service Worker
+
+---
+
+## Author
+
+**[Your Name]**
+- Cisco NetAcad Network Basics Certified
+- GitHub: [Your GitHub Profile URL]
+- LinkedIn: [Your LinkedIn URL]
+
+---
+
+## License
+
+Open source — free to use, modify, and share for personal and commercial projects.
